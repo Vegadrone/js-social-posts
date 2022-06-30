@@ -121,7 +121,7 @@ posts.forEach((element, index) => {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="javascript:void(0)" data-postid="1">
+                <a class="like-button  js-like-button" href="#)" data-postid="1">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
@@ -139,9 +139,12 @@ const likeBtnArray = document.querySelectorAll('.like-button');
 for(let i = 0; i < likeBtnArray.length; i++){
     const likeBtn = likeBtnArray[i];
     clickOnBtn(likeBtn);
-}
+};
 
 function clickOnBtn (btn){
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+    e.preventDefault()
     btn.classList.add('like-button--liked');
-})}
+    })
+};
+
