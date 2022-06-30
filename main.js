@@ -1,3 +1,9 @@
+//! Bonus 2
+// Formattare le date in formato italiano(gg / mm / aaaa)
+// Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+//! Bonus 3
+// Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola  LF).
+
 const posts = [
     {
         "id": 1,
@@ -99,8 +105,12 @@ const posts = [
 
 const container = document.getElementById('container');
 
+let isClicked = true
 
-posts.forEach((element, index) => {
+posts.forEach((element) => {
+    if (isClicked = element.is_liked) {
+        element.likes = element.likes + 1;
+    }
     container.innerHTML += 
     `<div class="post" id="current-post">
     <div class="post__header">
@@ -127,24 +137,38 @@ posts.forEach((element, index) => {
                 </a>
             </div>
             <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
             </div>
         </div>
     </div>
     </div>`
+    
+    if (isClicked = element.is_liked) {
+        const like = document.querySelector('.like-button');
+        like.classList.add('like-button--liked')
+    }
 });
 
+
+
 const likeBtnArray = document.querySelectorAll('.like-button');
+const likeCounterArray = document.querySelectorAll('likes__counter');
 
 for(let i = 0; i < likeBtnArray.length; i++){
     const likeBtn = likeBtnArray[i];
     clickOnBtn(likeBtn);
 };
 
-function clickOnBtn (btn){
+// FUNCTIONS
+
+function clickOnBtn(btn) {
+    if (isClicked = false){
     btn.addEventListener('click', (e) => {
-    e.preventDefault()
-    btn.classList.add('like-button--liked');
-    })
+         e.preventDefault()
+         btn.classList.add('like-button--liked')
+    })}
 };
 
+//! Bonus 1 -
+// Quando clicchiamo su un "Mi piace", oltre al cambio previsto dalla milestone 2, incrementiamo il counter dei likes relativo al suddetto post.
+// Cerchiamo di trovare un modo efficiente per salvare il like per ogni post, magari sfruttando meglio i dati che ho già a disposizione ?
